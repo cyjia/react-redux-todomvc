@@ -1,15 +1,9 @@
 import React from 'react';
 
-import TodoList from './components/todo-list';
+import VisibleTodoList from './../containers/visible-todo-list';
 
 export default class App extends React.Component {
   render() {
-    const todos = [
-      { id: 1, isCompleted: true },
-      { id: 2, isCompleted: true },
-      { id: 3, isCompleted: false }
-    ];
-
     return (
       <section className="todoapp">
         <header className="header">
@@ -18,8 +12,8 @@ export default class App extends React.Component {
         </header>
         <section className="main">
           <input className="toggle-all" type="checkbox"/>
-          <label for="toggle-all">Mark all as complete</label>
-          <TodoList todos={todos}/>
+          <label htmlFor="toggle-all">Mark all as complete</label>
+          <VisibleTodoList />
         </section>
         <footer className="footer">
           <span className="todo-count"><strong>0</strong> item left</span>
