@@ -1,6 +1,5 @@
 import React from 'react';
-
-import VisibleTodoList from './../containers/visible-todo-list';
+import VisibleTodoList from './visible-todo-list';
 
 export default class App extends React.Component {
   render() {
