@@ -1,7 +1,15 @@
 import React from 'react';
 
+import TodoList from './components/todo-list';
+
 export default class App extends React.Component {
   render() {
+    const todos = [
+      { id: 1, isCompleted: true },
+      { id: 2, isCompleted: true },
+      { id: 3, isCompleted: false }
+    ];
+
     return (
       <section className="todoapp">
         <header className="header">
@@ -11,24 +19,7 @@ export default class App extends React.Component {
         <section className="main">
           <input className="toggle-all" type="checkbox"/>
           <label for="toggle-all">Mark all as complete</label>
-          <ul className="todo-list">
-            <li className="completed">
-              <div className="view">
-                <input className="toggle" type="checkbox" checked/>
-                <label>Taste JavaScript</label>
-                <button className="destroy"></button>
-              </div>
-              <input className="edit" value="Create a TodoMVC template"/>
-            </li>
-            <li>
-              <div className="view">
-                <input className="toggle" type="checkbox"/>
-                <label>Buy a unicorn</label>
-                <button className="destroy"></button>
-              </div>
-              <input className="edit" value="Rule the web"/>
-            </li>
-          </ul>
+          <TodoList todos={todos}/>
         </section>
         <footer className="footer">
           <span className="todo-count"><strong>0</strong> item left</span>
