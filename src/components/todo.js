@@ -2,46 +2,63 @@ import React from 'react';
 import DeleteTodo from './delete-todo';
 import ToggleTodo from './toggle-todo';
 import {connect} from 'react-redux';
+import {updateTodoTitle} from '../actions';
 
-function Todo({todo, editing, onEnterEditing, onLeaveEditing}) {
+function Todo({todo, editing, onEnterEditing, onLeaveEditing, onChange}) {
+  const isEditing = editing.id === todo.id;
   return (
-    <li className={`${todo.completed ? 'completed' : ''} ${editing ? 'editing' : ''}`}>
+    <li className={`${todo.completed ? 'completed' : ''} ${isEditing ? 'editing' : ''}`}>
       <div className="view">
         <ToggleTodo todo={todo}/>
         <label onDoubleClick={e => {
           e.preventDefault();
-          onEnterEditing(todo.id);
+          onEnterEditing(todo);
         }}>{todo.title}</label>
         <DeleteTodo todo={todo}/>
       </div>
-      {editing && (<input
+      {isEditing && (<input
         onBlur={e => {
           e.preventDefault();
-          onLeaveEditing(todo.id);
+          onLeaveEditing(todo, e.target.value);
         }}
-        autoFocus={editing}
-        className="edit" value={todo.title}/>)}
+        onChange={e => {
+          e.preventDefault();
+          onChange(e.target.value);
+        }}
+        autoFocus={isEditing}
+        className="edit"
+        onFocus={e => {
+          e.target.value = e.target.value
+        }}
+        defaultValue={todo.title}
+      />)}
     </li>)
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    editing: state.editing == ownProps.todo.id
+    editing: state.editing
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onEnterEditing: (id) => {
+    onEnterEditing: (todo) => {
       dispatch({
         type: 'ENTER_EDITING',
-        id: id
+        editing: { id: todo.id, content: todo.title }
       })
     },
-    onLeaveEditing: (id) => {
+    onLeaveEditing: (todo, value) => {
       dispatch({
-        type: 'LEAVE_EDITING',
-        id: id
+        type: 'LEAVE_EDITING'
+      });
+      dispatch(updateTodoTitle(todo, value));
+    },
+    onChange: (content) => {
+      dispatch({
+        type: 'CHANGE_EDITING',
+        content: content
       })
     }
   }

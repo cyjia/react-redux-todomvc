@@ -108,7 +108,7 @@ export function toggleTodo(todo, completed) {
       body: JSON.stringify({ completed: completed })
     }).then(response => response.json())
       .then(todo => dispatch({
-        type: 'TOGGLE_TODO_RESPONSE',
+        type: 'UPDATE_TODO_RESPONSE',
         todo: todo
       }))
   }
@@ -133,5 +133,23 @@ export function toggleAll(todos) {
         .filter(t => t.completed !== targetState)
         .map(t => toggleTodo(t, targetState)(dispatch)))
 
+  };
+}
+
+export function updateTodoTitle(todo, newTitle) {
+  return function(dispatch) {
+    return fetch(todo.url, {
+      method: 'PATCH',
+      mode: 'cors',
+      redirect: 'follow',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({ title: newTitle })
+    }).then(response => response.json())
+      .then(todo => dispatch({
+      type: 'UPDATE_TODO_RESPONSE',
+      todo: todo
+    }))
   };
 }
