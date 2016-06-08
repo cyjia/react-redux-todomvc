@@ -61,8 +61,9 @@ export function addTodo(title) {
       redirect: 'follow',
       headers: new Headers({
         'Content-Type': 'application/json'
-      })
-    }, { title: title }).then(response => response.json())
+      }),
+      body: JSON.stringify({ title: title })
+    }).then(response => response.json())
       .then(json => dispatch(receiveTodo(json)));
   };
 }
