@@ -5,6 +5,10 @@ const initialState = {
   todos: []
 };
 
+function removeTodo(todos, todo) {
+  return todos.filter(t => t.id !== todo.id);
+}
+
 function todoApp(state = initialState, action) {
   switch (action.type) {
   case SET_VISIBILITY_FILTER:
@@ -17,6 +21,8 @@ function todoApp(state = initialState, action) {
     return Object.assign({}, state, {
       todos: state.todos.concat(action.todo)
     });
+  case "DELETE_TODO_RESPONSE":
+    return Object.assign({}, state, { todos: removeTodo(state.todos, action.todo) });
   default:
     return state;
   }

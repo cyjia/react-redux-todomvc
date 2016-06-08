@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteTodo from './delete-todo';
 
 export default class Todo extends React.Component {
   render() {
@@ -8,7 +9,7 @@ export default class Todo extends React.Component {
         <div className="view">
           <input className="toggle" type="checkbox" checked/>
           <label>{todo.title}</label>
-          <button className="destroy"></button>
+          <DeleteTodo todo={todo}/>
         </div>
         <input className="edit" value="Create a TodoMVC template"/>
       </li>) :
@@ -16,7 +17,7 @@ export default class Todo extends React.Component {
           <div className="view">
             <input className="toggle" type="checkbox"/>
             <label>{todo.title}</label>
-            <button className="destroy"></button>
+            <DeleteTodo todo={todo}/>
           </div>
           <input className="edit" value="Rule the web"/>
         </li>

@@ -66,3 +66,25 @@ export function addTodo(title) {
       .then(json => dispatch(receiveTodo(json)));
   };
 }
+
+export function deleteTodo(id) {
+  return function(dispatch) {
+    dispatch({
+      type: 'DELETE_TODO_REQUEST',
+      id: id
+    });
+
+    return fetch(full_url(`/${id}`), {
+      method: 'DELETE',
+      mode: 'cors',
+      redirect: 'follow',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then(response => response.json())
+      .then(json => dispatch({
+        type: 'DELETE_TODO_RESPONSE',
+        todo: json
+      }))
+  }
+}
