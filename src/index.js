@@ -9,7 +9,14 @@ import { fetchTodos } from './actions';
 import App from './components/app';
 require('todomvc-app-css/index.css');
 
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const logger = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result
+};
+
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 store.dispatch(fetchTodos());
 
 ReactDOM.render((

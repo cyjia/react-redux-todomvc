@@ -1,4 +1,4 @@
-import { VisibilityFilters, SET_VISIBILITY_FILTER, RECEIVE_TODOS } from './actions';
+import { VisibilityFilters, SET_VISIBILITY_FILTER, RECEIVE_TODOS, RECEIVE_TODO } from './actions';
 
 const initialState = {
   visibilityFilter: VisibilityFilters.SHOW_ALL,
@@ -13,6 +13,10 @@ function todoApp(state = initialState, action) {
     });
   case RECEIVE_TODOS:
     return Object.assign({}, state, { todos: action.todos.slice() });
+  case RECEIVE_TODO:
+    return Object.assign({}, state, {
+      todos: state.todos.concat(action.todo)
+    });
   default:
     return state;
   }

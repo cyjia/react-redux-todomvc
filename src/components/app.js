@@ -1,5 +1,6 @@
 import React from 'react';
 import VisibleTodoList from './visible-todo-list';
+import AddTodo from './add-todo';
 
 export default class App extends React.Component {
   render() {
@@ -7,7 +8,7 @@ export default class App extends React.Component {
       <section className="todoapp">
         <header className="header">
           <h1>todos</h1>
-          <input className="new-todo" placeholder="What needs to be done?" autofocus/>
+          <AddTodo />
         </header>
         <section className="main">
           <input className="toggle-all" type="checkbox"/>
