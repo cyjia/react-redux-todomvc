@@ -89,3 +89,27 @@ export function deleteTodo(id) {
       }))
   }
 }
+
+export function completeTodo(todo, completed) {
+  return function(dispatch) {
+    dispatch({
+      type: 'COMPLETE_TODO_REQUEST',
+      completed: completed,
+      todo: todo
+    });
+
+    return fetch(full_url(`/${todo.id}`), {
+      method: 'PATCH',
+      mode: 'cors',
+      redirect: 'follow',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({ completed: completed })
+    }).then(response => response.json())
+      .then(todo => dispatch({
+        type: 'COMPLETE_TODO_RESPONSE',
+        todo: todo
+      }))
+  }
+}

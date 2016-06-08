@@ -9,6 +9,10 @@ function removeTodo(todos, todo) {
   return todos.filter(t => t.id !== todo.id);
 }
 
+function updateTodo(todos, todo) {
+  return todos.map(t =>t.id === todo.id ? Object.assign({}, t, todo) : t);
+}
+
 function todoApp(state = initialState, action) {
   switch (action.type) {
   case SET_VISIBILITY_FILTER:
@@ -23,6 +27,8 @@ function todoApp(state = initialState, action) {
     });
   case "DELETE_TODO_RESPONSE":
     return Object.assign({}, state, { todos: removeTodo(state.todos, action.todo) });
+  case "COMPLETE_TODO_RESPONSE":
+    return Object.assign({}, state, { todos: updateTodo(state.todos, action.todo) });
   default:
     return state;
   }

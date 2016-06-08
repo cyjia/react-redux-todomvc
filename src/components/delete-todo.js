@@ -8,6 +8,7 @@ class DeleteTodo extends React.Component {
     return (<button
       className="destroy"
       onClick={e => {
+        e.preventDefault();
         this.props.deleteTodo(this.props.todo.id)
       }}
     />)
