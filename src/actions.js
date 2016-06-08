@@ -90,10 +90,10 @@ export function deleteTodo(id) {
   }
 }
 
-export function completeTodo(todo, completed) {
+export function toggleTodo(todo, completed) {
   return function(dispatch) {
     dispatch({
-      type: 'COMPLETE_TODO_REQUEST',
+      type: 'TOGGLE_TODO_REQUEST',
       completed: completed,
       todo: todo
     });
@@ -108,7 +108,7 @@ export function completeTodo(todo, completed) {
       body: JSON.stringify({ completed: completed })
     }).then(response => response.json())
       .then(todo => dispatch({
-        type: 'COMPLETE_TODO_RESPONSE',
+        type: 'TOGGLE_TODO_RESPONSE',
         todo: todo
       }))
   }

@@ -27,7 +27,7 @@ function todoApp(state = initialState, action) {
     });
   case "DELETE_TODO_RESPONSE":
     return Object.assign({}, state, { todos: removeTodo(state.todos, action.todo) });
-  case "COMPLETE_TODO_RESPONSE":
+  case "TOGGLE_TODO_RESPONSE":
     return Object.assign({}, state, { todos: updateTodo(state.todos, action.todo) });
   default:
     return state;

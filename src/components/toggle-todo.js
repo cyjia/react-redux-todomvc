@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { completeTodo } from '../actions';
+import { toggleTodo } from '../actions';
 
-function CompleteTodo({completed, onChange}) {
+function ToggleTodo({completed, onChange}) {
   return (<input
     className="toggle"
     type="checkbox"
@@ -21,9 +21,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChange: (completed) => {
-      dispatch(completeTodo(ownProps.todo, completed))
+      dispatch(toggleTodo(ownProps.todo, completed))
     }
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompleteTodo);
+export default connect(mapStateToProps, mapDispatchToProps)(ToggleTodo);
