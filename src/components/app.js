@@ -1,6 +1,7 @@
 import React from 'react';
 import VisibleTodoList from './visible-todo-list';
 import AddTodo from './add-todo';
+import FilterLink from './filter-link';
 
 export default class App extends React.Component {
   render() {
@@ -19,13 +20,13 @@ export default class App extends React.Component {
           <span className="todo-count"><strong>0</strong> item left</span>
           <ul className="filters">
             <li>
-              <a className="selected" href="#/">All</a>
+              <FilterLink filter="SHOW_ALL">All</FilterLink>
             </li>
             <li>
-              <a href="#/active">Active</a>
+              <FilterLink filter="SHOW_ACTIVE">Active</FilterLink>
             </li>
             <li>
-              <a href="#/completed">Completed</a>
+              <FilterLink filter="SHOW_COMPLETED">Completed</FilterLink>
             </li>
           </ul>
           <button className="clear-completed">Clear completed</button>
