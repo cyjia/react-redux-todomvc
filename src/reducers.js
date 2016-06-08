@@ -2,7 +2,8 @@ import { VisibilityFilters, SET_VISIBILITY_FILTER, RECEIVE_TODOS, RECEIVE_TODO }
 
 const initialState = {
   visibilityFilter: VisibilityFilters.SHOW_ALL,
-  todos: []
+  todos: [],
+  editing: undefined
 };
 
 function removeTodo(todos, todo) {
@@ -29,6 +30,8 @@ function todoApp(state = initialState, action) {
     return Object.assign({}, state, { todos: removeTodo(state.todos, action.todo) });
   case "TOGGLE_TODO_RESPONSE":
     return Object.assign({}, state, { todos: updateTodo(state.todos, action.todo) });
+  case "ENTER_EDITING":
+    return Object.assign({}, state, { editing: action.id });
   default:
     return state;
   }
