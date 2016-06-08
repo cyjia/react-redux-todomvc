@@ -1,12 +1,12 @@
 import React from 'react';
 import DeleteTodo from './delete-todo';
-import CompleteTodo from './complete-todo';
+import ToggleTodo from './toggle-todo';
 
 export default function Todo({todo}) {
   return (
     <li className={`${todo.completed ? 'completed' : ''}`}>
       <div className="view">
-        <CompleteTodo todo={todo}/>
+        <ToggleTodo todo={todo}/>
         <label>{todo.title}</label>
         <DeleteTodo todo={todo}/>
       </div>

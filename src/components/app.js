@@ -4,6 +4,7 @@ import AddTodo from './add-todo';
 import FilterLink from './filter-link';
 import ItemLeft from './item-left';
 import ClearCompleted from './clear-completed';
+import ToggleAll from './toggle-all';
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
         <AddTodo />
       </header>
       <section className="main">
-        <input className="toggle-all" type="checkbox"/>
+        <ToggleAll />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <VisibleTodoList />
       </section>

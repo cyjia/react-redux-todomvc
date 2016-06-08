@@ -123,3 +123,15 @@ export function clearCompleted(todos) {
     return Promise.all(todos.filter(t => t.completed).map(t => deleteTodo(t.id)(dispatch)))
   }
 }
+
+export function toggleAll(todos) {
+  return function(dispatch) {
+    const isAllCompleted = todos.find(t => !t.completed) == undefined;
+    const targetState = !isAllCompleted;
+    return Promise.all(
+      todos
+        .filter(t => t.completed !== targetState)
+        .map(t => toggleTodo(t, targetState)(dispatch)))
+
+  };
+}
