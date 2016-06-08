@@ -2,6 +2,7 @@ import React from 'react';
 import VisibleTodoList from './visible-todo-list';
 import AddTodo from './add-todo';
 import FilterLink from './filter-link';
+import ItemLeft from './item-left';
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
         <VisibleTodoList />
       </section>
       <footer className="footer">
-        <span className="todo-count"><strong>0</strong> item left</span>
+        <ItemLeft />
         <ul className="filters">
           <li>
             <FilterLink filter="SHOW_ALL">All</FilterLink>
