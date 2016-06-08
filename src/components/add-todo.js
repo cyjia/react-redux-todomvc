@@ -13,7 +13,7 @@ function AddTodo({addTodo}) {
       }}
     className="new-todo"
     placeholder="What needs to be done?"
-    autofocus/>);
+    autoFocus={true}/>);
 }
 
 const mapStateToProps = (state) => {
