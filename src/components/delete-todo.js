@@ -2,17 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteTodo } from '../actions';
 
-class DeleteTodo extends React.Component {
-
-  render() {
-    return (<button
-      className="destroy"
-      onClick={e => {
+function DeleteTodo({todo, deleteTodo}) {
+  return (<button
+    className="destroy"
+    onClick={e => {
         e.preventDefault();
-        this.props.deleteTodo(this.props.todo.id)
+        deleteTodo(todo.id)
       }}
-    />)
-  }
+  />)
 }
 
 const mapStateToProps = () => {

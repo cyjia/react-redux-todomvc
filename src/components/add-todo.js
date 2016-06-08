@@ -2,21 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 
-class AddTodo extends React.Component {
-
-  render() {
-    return (<input
-      onKeyUp={ e => {
+function AddTodo({addTodo}) {
+  return (<input
+    onKeyUp={ e => {
         e.preventDefault();
         if (e.keyCode === 13) {
-          this.props.addTodo(e.target.value);
+          addTodo(e.target.value);
           e.target.value = "";
         }
       }}
-      className="new-todo"
-      placeholder="What needs to be done?"
-      autofocus/>);
-  }
+    className="new-todo"
+    placeholder="What needs to be done?"
+    autofocus/>);
 }
 
 const mapStateToProps = (state) => {

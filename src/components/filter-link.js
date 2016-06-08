@@ -2,19 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setVisibilityFilter } from '../actions';
 
-class FilterLink extends React.Component {
-  render() {
-    return (
-      <a className={this.props.active ? 'selected' : ''}
-         href="#/"
-         onClick={e => {
+function FilterLink({active, onClick, children} = {}) {
+  return (
+    <a className={active ? 'selected' : ''}
+       href="#/"
+       onClick={e => {
           e.preventDefault();
-          this.props.onClick();
+          onClick();
         }}>
-        {this.props.children}
-      </a>
-    );
-  }
+      {children}
+    </a>
+  );
 }
 
 const mapStateToProps = (state, ownProps) => {
