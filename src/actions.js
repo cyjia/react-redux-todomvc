@@ -113,3 +113,13 @@ export function completeTodo(todo, completed) {
       }))
   }
 }
+
+export function clearCompleted(todos) {
+  return function(dispatch) {
+    dispatch({
+      type: 'CLEAR_COMPLETED_REQUEST',
+      todos: todos
+    });
+    return Promise.all(todos.filter(t => t.completed).map(t => deleteTodo(t.id)(dispatch)))
+  }
+}

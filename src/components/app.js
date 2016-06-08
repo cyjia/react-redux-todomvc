@@ -3,6 +3,7 @@ import VisibleTodoList from './visible-todo-list';
 import AddTodo from './add-todo';
 import FilterLink from './filter-link';
 import ItemLeft from './item-left';
+import ClearCompleted from './clear-completed';
 
 export default function App() {
   return (
@@ -29,7 +30,7 @@ export default function App() {
             <FilterLink filter="SHOW_COMPLETED">Completed</FilterLink>
           </li>
         </ul>
-        <button className="clear-completed">Clear completed</button>
+        <ClearCompleted />
       </footer>
     </section>
   );
