@@ -10,11 +10,17 @@ function Todo({todo, editing, onEnterEditing, onLeaveEditing}) {
         <ToggleTodo todo={todo}/>
         <label onDoubleClick={e => {
           e.preventDefault();
-          onEnterEditing();
+          onEnterEditing(todo.id);
         }}>{todo.title}</label>
         <DeleteTodo todo={todo}/>
       </div>
-      <input className="edit" value={todo.title}/>
+      {editing && (<input
+        onBlur={e => {
+          e.preventDefault();
+          onLeaveEditing(todo.id);
+        }}
+        autoFocus={editing}
+        className="edit" value={todo.title}/>)}
     </li>)
 }
 
@@ -24,18 +30,18 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onEnterEditing: () => {
+    onEnterEditing: (id) => {
       dispatch({
         type: 'ENTER_EDITING',
-        id: ownProps.todo.id
+        id: id
       })
     },
-    onLeaveEditing: () => {
+    onLeaveEditing: (id) => {
       dispatch({
         type: 'LEAVE_EDITING',
-        id: ownProps.todo.id
+        id: id
       })
     }
   }

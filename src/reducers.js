@@ -32,6 +32,8 @@ function todoApp(state = initialState, action) {
     return Object.assign({}, state, { todos: updateTodo(state.todos, action.todo) });
   case "ENTER_EDITING":
     return Object.assign({}, state, { editing: action.id });
+  case "LEAVE_EDITING":
+    return Object.assign({}, state, { editing: undefined });
   default:
     return state;
   }
